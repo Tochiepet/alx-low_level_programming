@@ -1,4 +1,5 @@
 #include "main.h"
+#include <stdlib.h>
 
 /**
  * alloc_grid - double dimentional array
@@ -26,12 +27,18 @@ int **alloc_grid(int width, int height)
 
 		if (rute[p] == NULL)
 		{
-			free(rute);
-			for (j = 0; j <= height; j++)
+			for (; p >= 0; p--)
 				free(rute[p]);
+
+			free(rute);
 			return (NULL);
 		}
-		for (j = 0; j <= width; j++)
+	}
+
+	for (p = 0; p < height; p++)
+	{
+		for (j = 0; j < width; j++)
+
 			rute[p][j] = 0;
 	}
 	return (rute);
